@@ -1,0 +1,19 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mekaknepley/liri-node-app.git"
+  },
+  "author": "Meka Knepley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mekaknepley/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/mekaknepley/liri-node-app#readme"
+}
