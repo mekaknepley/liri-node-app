@@ -10,8 +10,19 @@ var keys = require('./keys.js');
 
 var paramAction = process.argv[2];
 var paramArgument = process.argv[3];
+
+var textFile = "log.txt";
  
 //console.log('Param: ' + paramAction);
+
+function outputText(string) {
+	console.log(string);
+	fs.appendFile(textFile, string + "\n", function(error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+}
 
 if (paramAction == "do-what-it-says") {
 	//console.log("I'm going to open random.txt using fs and then execute the commands there");
@@ -45,7 +56,7 @@ if (paramAction == "my-tweets") {
 	  if (!error) {
 	    //console.log(tweets);
 	    for (var i = 0; i < tweets.length; i++) {
-	    	console.log("\"" + tweets[i].text + "\" at " + tweets[i].created_at);
+	    	outputText("\"" + tweets[i].text + "\" at " + tweets[i].created_at);
 	    }
 	  }
 	});
@@ -83,10 +94,10 @@ else if (paramAction == "spotify-this-song") {
 				artistNames += ", ";
 			}
 		}
-		console.log("Artist(s): " + artistNames);
-		console.log("Song: " + songName);
-		console.log("Preview URL: " + previewUrl);
-		console.log("Album: " + albumName);
+		outputText("Artist(s): " + artistNames);
+		outputText("Song: " + songName);
+		outputText("Preview URL: " + previewUrl);
+		outputText("Album: " + albumName);
 	});
 }
 else if (paramAction == "movie-this") {
@@ -106,14 +117,14 @@ else if (paramAction == "movie-this") {
 
 			var movieInfo = JSON.parse(body);
 
-			console.log("Title: " + movieInfo.Title);
-			console.log("Year: " + movieInfo.Year);
-			console.log("IMDB Rating: " + movieInfo.imdbRating);
-			console.log("Rotten Tomatoes Rating: " + movieInfo.Ratings[1].Value);
-			console.log("Country: " + movieInfo.Country);
-			console.log("Language: " + movieInfo.Language);
-			console.log("Plot: " + movieInfo.Plot);
-			console.log("Actors: " + movieInfo.Actors);
+			outputText("Title: " + movieInfo.Title);
+			outputText("Year: " + movieInfo.Year);
+			outputText("IMDB Rating: " + movieInfo.imdbRating);
+			outputText("Rotten Tomatoes Rating: " + movieInfo.Ratings[1].Value);
+			outputText("Country: " + movieInfo.Country);
+			outputText("Language: " + movieInfo.Language);
+			outputText("Plot: " + movieInfo.Plot);
+			outputText("Actors: " + movieInfo.Actors);
 		}
 		else
 		{
@@ -125,5 +136,5 @@ else if (paramAction == "movie-this") {
 	});
 }
 else {
-	console.log("Unrecognized command! Acceptable commands are: my-tweets, spotify-this-song, movie-this, and do-what-it-says.");
+	outputText("Unrecognized command! Acceptable commands are: my-tweets, spotify-this-song, movie-this, and do-what-it-says.");
 }
